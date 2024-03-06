@@ -9,8 +9,8 @@
     <title>JoinPage</title>
     <style>
           body {background-color:#212121 ;}
-        .loginform {box-sizing: border-box;    width:600px;height: 500px; 
-             background-color: #353535;text-align: center; margin: 0 auto;}
+        .loginform {box-sizing: border-box;    width:850px;height: 550px; 
+             background-color: #353535;text-align: center; margin: 0 auto;padding:10px;}
              .loginform > h1{color: white; text-align: center;}
              .loginform > h3{color:gray;}
              
@@ -18,6 +18,7 @@
            .joinButton{width: 440px; height: 60px; background-color:#0054FF ;border-radius: 90px;
             color:white;}
             .loginBar{width: 300px; height: 40px; background-color: #4C4C4C;}
+            #idCheck{color:lightgray; background-color:#0054FF; border-radius:90px;}
 
 
     </style>
@@ -30,8 +31,11 @@
 <h1>회원가입</h1>
 <h3>이메일과 비밀번호를 입력해주세요!</h3>
 <div id="loginbox">
-    <input type ="text" name ="ID" placeholder="ex)ID@email.com" class="loginBar"><br><br>
-    <input type ="password" name="PASS" placeholder="비밀번호 설정" class="loginBar"><br><br>
+    <input type ="text" name ="ID" placeholder="ex)ID@email.com" class="loginBar">
+       &nbsp;  <input type ="submit" value ="중복 확인" id="idCheck">
+    <br><br>
+    <input type ="password" name="PASS" placeholder="비밀번호 설정" class="loginBar"> <br><br>
+     <input type ="password" name="PASS" placeholder="비밀번호 재확인" class="loginBar"><br><br>
 
     <input type="checkbox" value="아이디 저장">아이디 저장
     <input type="checkbox" value="자동 로그인">자동 로그인<br><br>

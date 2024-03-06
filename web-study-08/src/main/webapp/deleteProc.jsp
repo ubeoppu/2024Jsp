@@ -4,8 +4,8 @@
 <%@page import="java.sql.Statement"%>
 <%@page import="java.sql.Connection"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-    <%!
+	pageEncoding="UTF-8"%>
+<%!
     Connection con = null;
     PreparedStatement pstmt = null;
     
@@ -21,7 +21,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<%
+	<%
 try{
 	//1.드라이브 로드
 	Class.forName("oracle.jdbc.driver.OracleDriver");
@@ -50,7 +50,7 @@ try{
 	}
 }
 %>
-<h3>회원 삭제 성공</h3>
-<a href="01_allMember.jsp">회원 목록 확인하러 가기</a>
+	<h3>회원 삭제 성공</h3>
+	<a href="01_allMember.jsp">회원 목록 확인하러 가기</a>
 </body>
 </html>
