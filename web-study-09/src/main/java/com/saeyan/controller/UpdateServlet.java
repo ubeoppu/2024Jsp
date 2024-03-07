@@ -1,9 +1,6 @@
 package com.saeyan.controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -14,18 +11,32 @@ import javax.servlet.http.HttpSession;
 import com.saeyan.dao.MemberDAO;
 import com.saeyan.dto.MemberVO;
 
-@WebServlet("/join.do")
-public class joinServlet extends HttpServlet {
+@WebServlet("/memberUpdate.do")
+public class UpdateServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher dispatcher = request.getRequestDispatcher("member/join.jsp");
-		dispatcher.forward(request, response);
-
+		
+		String userid = request.getParameter("userid");
+		System.out.println("memberUpdate:" + userid);
+		
+		MemberDAO mDao = MemberDAO.getInstance();
+		
+		MemberVO vo = mDao.getMember(userid);
+		HttpSession session = request.getSession();
+		
+		if(session != null) {
+			session.setAttribute("mVo", vo);
+		}
+		
+		request.getRequestDispatcher("member/memberUpdate.jsp").forward(request, response);
 	}
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("utf-8");
+	request.setCharacterEncoding("utf-8");
 		
 		String name = request.getParameter("name");
+		System.out.println("memberUpdate!!post >> " + name);
 		String userid = request.getParameter("userid");
 		String pwd = request.getParameter("pwd");
 		String email = request.getParameter("email");
@@ -43,23 +54,17 @@ public class joinServlet extends HttpServlet {
 		vo.setPhone(phone);
 		vo.setAdmin(Integer.parseInt(admin));
 		
-		int result = mDao.insertMember(vo);
+		int result = mDao.updateMember(vo);
 		
-//		PrintWriter out = response.getWriter();
+		if(result == 1) {
+//			HttpSession session = request.getSession();
+//			session.setAttribute("message", "회원정보 변경완료!");
+
+			response.sendRedirect("member/login.jsp");
 		
-		HttpSession session = request.getSession();
-		
-		if(result == 1) {//회원가입 성공
-		    session.setAttribute("userid", userid);
-			request.setAttribute("message", "회원가입에 성공했습니다.");
-		}else if(result == -1) {//회원가입 실패
-			request.setAttribute("message", "회원가입에 실패했습니다.");
 		}
 		
-		RequestDispatcher dispatcher = request.getRequestDispatcher("member/login.jsp");
-		dispatcher.forward(request, response);
 		
-//		response.sendRedirect("member/login.jsp");
 	}
 
 }
