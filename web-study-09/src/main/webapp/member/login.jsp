@@ -20,7 +20,7 @@
 				<td><input type="password" name="pwd"></td>
 			</tr>
 			<tr>
-				<td colspan="2" align="center"><input type="submit" value="로그인"
+				<td  colspan="2" align="center"><input type="submit" value="로그인"
 					onclick="return loginCheck()">&nbsp;&nbsp; <input
 					type="reset" value="취소"> &nbsp;&nbsp; <input type="button"					
 					value="회원 가입" onclick="location.href='join.do'"></td><!-- location:현재 창의 URL을 나타내는 객체, href:현재 창의 URL을 나타내는 속성 -->
