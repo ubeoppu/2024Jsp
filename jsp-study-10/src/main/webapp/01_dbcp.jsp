@@ -1,24 +1,35 @@
-<%@page import="java.sql.Connection"%>
-<%@page import="javax.sql.DataSource"%>
-<%@page import="javax.naming.InitialContext"%>
-<%@page import="javax.naming.Context"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
-   <h1>霐旊箘 鞐半彊</h1>
-   <%
-      Context initContext = new InitialContext();
-      Context envContext  = (Context)initContext.lookup("java:/comp/env");
-      DataSource ds = (DataSource)envContext.lookup("jdbc/myoracle");
-      Connection conn = ds.getConnection();
-      out.println("DBCP 鞐瓣舶 靹标车");
-   
-   %>
-</body>
-</html>
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
+<%@ page import="java.sql.*"%>
+<%
+    //郴 db 立加俊 荤侩且 conn 函荐
+    Connection conn = null;
+    //坷扼努 靛扼捞滚 版肺 汲沥
+    String driver = "oracle.jdbc.driver.OracleDriver";
+    //郴 db狼 拌沥 版肺 汲沥
+    String url = "jdbc:oracle:thin:@localhost:1521:xe";
+    //立加 己傍,角菩 咯何 荤侩矫 静绰 函荐
+    Boolean connect = false;
+    
+    //db 立加 内靛绰 馆靛矫 try~catch巩 救俊 结拎具窃
+    try {
+        //坷扼努 靛扼捞滚 立加
+        Class.forName(driver);
+        //郴 db 立加
+        conn = DriverManager.getConnection(url, "ezen", "1234");
+        //立加己傍矫 true 汲沥
+        connect = true;
+        //立加 谗扁, 谗绰 捞蜡 : 亲惑 db啊 楷搬登绢 乐栏搁 立加 坷幅 棺 单捞磐 面倒捞 老绢唱扁 锭巩 
+        conn.close();
+    } catch (Exception e) {
+        //立加 角菩矫 false 棱绊 抗寇贸府秦淋
+        connect = false;
+        e.printStackTrace();
+    }
+%>
+<%
+if(connect==true){%>
+    楷搬登菌嚼聪促.
+<%}else{ %>
+    楷搬俊 角菩窍看嚼聪促.
+<%}%>

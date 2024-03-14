@@ -127,7 +127,7 @@ public int userCheck(String userid, String pwd) {
 		pstmt.setString(1, userid);
 		
 		rs = pstmt.executeQuery(); //SELECT한 구문을 찾을 수 없으면 0출력 찾은 행의 개수만큼 출력
-		
+		System.out.println("rs>>" + rs);
 		if(rs.next()) {
 			if(rs.getString("pwd").equals(pwd)) {
 				result = 1; //로그인 성공

@@ -43,6 +43,7 @@ public class LoginServlet extends HttpServlet {
 		    session.setAttribute("loginUser", vo);
 		    request.setAttribute("message", "로그인 성공했습니다.");
 		    url = "member/main.jsp";
+		    session.setAttribute("userid", userid);
 		}else if(result == 0) {
 			request.setAttribute("message", "존재하지 않는 아이디입니다.");
 		}else if(result == -1) {
