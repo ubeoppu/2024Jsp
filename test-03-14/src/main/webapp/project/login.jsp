@@ -3,17 +3,18 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
 <title>Insert title here</title>
 <script type="text/javascript" src="script/member.js"></script>
 </head>
 <body>
 	<h2>로그인</h2>
-	<form action="loginServlet" method="post" name="frm">
+	<form action="mainServlet" method="post" name="frm">
+		<input type ="hidden" name = command value="login_Check" />
 		<table>
 			<tr>
 				<td>아이디</td>
-				<td><input type="text" name="userid" value="${userid}"></td>
+				<td><input type="text" name="userid" ></td>
 			</tr>
 			<tr>
 				<td>암 호</td>

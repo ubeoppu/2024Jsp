@@ -3,5 +3,5 @@
 <!DOCTYPE html>
 <meta charset="UTF-8">
 <%
-response.sendRedirect("loginServlet");
+response.sendRedirect("mainServlet?command=login_Form");
 %>

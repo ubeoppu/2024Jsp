@@ -26,13 +26,13 @@ public class MemberDAO {
 		return instance;
 	}
 	
-	public int checkUser(String id, String pwd) {
+	public int checkUser(String userid, String pwd) {
 
 		
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql = "select pwd from member1 where userid =? ";
+		String sql = "select pwd from member where userid =? ";
 		
 		int result = -1;
 		try {
@@ -40,7 +40,7 @@ public class MemberDAO {
 			
 			pstmt =con.prepareStatement(sql);
 			
-			pstmt.setString(1, id);
+			pstmt.setString(1, userid);
 			
 			rs = pstmt.executeQuery();
 			System.out.println("rs22>>" +rs);
@@ -63,6 +63,42 @@ public class MemberDAO {
 		}
 		return result;
 	}
+	public MemberVO getOneMember(String id){
+		
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "select * from member where userid =? ";
+		MemberVO vo = new MemberVO();
+		
+		try {
+			
+			
+			con = DBManager.getConnection();
+			
+			pstmt =con.prepareStatement(sql);
+			
+			pstmt.setString(1, id);
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+			vo.setRank(rs.getInt("admin"));
+			vo.setName(rs.getString("name"));
+			vo.setUserid(id);
+			vo.setPwd(rs.getString("pwd"));
+			vo.setEmail(rs.getString("email"));
+			vo.setPhone(rs.getString("phone"));
+			vo.setAddress(rs.getString("address"));
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			DBManager.close(con, pstmt, rs);
+		}
+		
+		return vo;
+	}
 	
 	public List<MemberVO> getAllMember(String id){
 		
@@ -70,7 +106,7 @@ public class MemberDAO {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql = "select * from member1 where userid =? ";
+		String sql = "select * from member where userid =? ";
 		
 		try {
 			MemberVO vo = new MemberVO();
@@ -130,7 +166,7 @@ public class MemberDAO {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		
-		String sql = "update member set name = ?, userid = ?, pwd = ?, email = ?, phone = ?, address = ? where userid = ?";
+		String sql = "update member set name = ?, userid = ?, email = ?, phone = ?, address = ? where userid = ?";
 		
 		con = DBManager.getConnection();
 		
@@ -140,11 +176,10 @@ public class MemberDAO {
 		
 		pstmt.setString(1, vo.getName());
 		pstmt.setString(2, vo.getUserid());
-		pstmt.setString(2, vo.getPwd());
-		pstmt.setString(2, vo.getEmail());
-		pstmt.setString(2, vo.getPhone());
-		pstmt.setString(2, vo.getAddress());
-		pstmt.setString(7, vo.getUserid());
+		pstmt.setString(3, vo.getEmail());
+		pstmt.setString(4, vo.getPhone());
+		pstmt.setString(5, vo.getAddress());
+		pstmt.setString(6, vo.getUserid());
 		
 		
 		result = pstmt.executeUpdate();	

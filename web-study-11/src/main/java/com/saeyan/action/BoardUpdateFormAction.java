@@ -21,9 +21,11 @@ public class BoardUpdateFormAction implements Action{
 		
 		vo = bDao.selectOneBoardByNum(num);
 		
+		bDao.updateReadCount(num);
+		
 		request.setAttribute("board", vo);
 		
-		request.getRequestDispatcher("board/boardUpdateForm.jsp")
+		request.getRequestDispatcher("board/boardUpdate.jsp")
 		.forward(request, response);
 		
 		

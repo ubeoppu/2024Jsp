@@ -11,35 +11,36 @@
 <body>
 	<h2>회원 가입</h2>
 	'*' 표시 항목은 필수 입력 항목입니다.
-	<form action="memberUpdate.do" method="post" name="frm">
+	<form action="mainServlet" method="post" name="frm">
+	<input type ="hidden" name =command value ="update_member">
 		<table border="1" width=600>
 			<tr>
 				<td>이름</td>
-				<td><input type="text" name="name" value="${member.name}" size="40"
+				<td><input type="text" name="name" value="${Member.name}" size="40"
 				readonly>*</td>
 			</tr>
 			<tr>
 				<td>아이디</td> <!--READONLY 수정불가 -->
-				<td><input type="text" name="userid"  id="userid" value ="${member.userid}"
+				<td><input type="text" name="userid"  id="userid" value ="${Member.userid}"
 				size="40" readonly>*
 			    </td>
 			</tr>
 			<tr>
-				<td>암 호</td>
+				<td>암 호 확인</td>
 				<td><input type="password" name="pwd" size="20" >*</td>
-			</tr>
-			<tr height="30">
-				<td width="80">암호 확인</td>
-				<td><input type="password" name="pwd_check" size="20">*</td>
 			</tr>
 			<tr>
 				<td>이메일</td>
-				<td><input type="text" name="email" value="${member.email}" size="20"></td>
+				<td><input type="text" name="email" value="${Member.email}" size="20"></td>
 			</tr>
 			<tr>
 				<td>전화번호</td>
-				<td><input type="text" name="phone" value="${member.phone}"size="20"></td>
+				<td><input type="text" name="phone" value="${Member.phone}"size="20"></td>
 			</tr>
+			<tr>
+			    <td>주소</td>
+			    <td><input type ="text" name="address" value="${Member.address }"size="20"></td>
+		   </tr>
 			<tr>
 				<td colspan="2" align="center">
 				<input type="submit" value="수정">

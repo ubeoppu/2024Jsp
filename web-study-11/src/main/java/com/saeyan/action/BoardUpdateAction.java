@@ -14,6 +14,10 @@ public class BoardUpdateAction implements Action{
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
+		request.setCharacterEncoding("utf-8"); //읽어올게있으면 작성
+		response.setContentType("text/html; charset=utf-8"); //저장할거면 작성해라
+		
 		BoardDAO bDao = BoardDAO.getInstance();
 		BoardVO vo = new BoardVO();
 		
@@ -24,10 +28,13 @@ public class BoardUpdateAction implements Action{
 		vo.setTitle(request.getParameter("title"));
 		vo.setContent(request.getParameter("content"));
 		vo.setNum(Integer.parseInt(request.getParameter("num")));
+		System.out.println("vo>>" + vo);
+		int result = bDao.updateBoard(vo);
 		
-		bDao.updateBoard(vo);
-		
+		System.out.println("result>>" + result);
 		response.sendRedirect("BoardServlet?command=board_list");
+		
+//		request.getRequestDispatcher("BoardServlet?command=board_list").forward(request, response);
 	}
 
 }
