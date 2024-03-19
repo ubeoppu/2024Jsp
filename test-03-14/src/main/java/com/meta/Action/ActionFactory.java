@@ -25,6 +25,18 @@ public class ActionFactory {
 			action = new changeUserInformationFormAction();
 		}else if(command.equals("update_member")) {
 			action = new updateMemberAction();
+		}else if(command.equals("BulletinList_View")) {
+			action = new BulletinListViewFormAction();
+		}else if(command.equals("test")) {
+			action = new testAction();
+		}else if(command.equals("insert_content")) {
+			
+		}else if(command.equals("contentWishList_View")) {
+			
+		}else if(command.equals("bulletinWishList_View")) {
+			action = new bulletinWishListFormAction();
+		}else if(command.equals("delete_User")) {
+			action = new deleteMemberAction();
 		}
 		
 		return action;

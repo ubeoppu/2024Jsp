@@ -18,5 +18,5 @@ CONSTRAINT fk_CONTENTUSERNUM  FOREIGN KEY(CONTENTUSERNUM) REFERENCES MEMBER1(use
 @ToString
 public class ContentWishListVO {
 int contentNum;
-int contentUserNum;
+int contentUserId;
 }

@@ -12,7 +12,9 @@
 <input type ="hidden" name ="userid" value= ${userid }>
 <a href ="mainServlet?command=changeUser_InformationForm">개인정보 변경</a><br>
 <a href ="mainServlet?command=BulletinList_View">작성한 게시글 확인</a><br>
-<a href ="mainServlet?command=wishList_View">내가 찜한 리스트</a>	<br><br>
+<a href ="mainServlet?command=contentWishList_View">내가 찜한 작품</a><br>
+<a href ="mainServlet?command=bulletinWishList_View">내가 찜한 게시글</a><br>
+<a href ="mainServlet?command=delete_User">회원 탈퇴</a><br><br>
 ${message}
 </form>
 </body>

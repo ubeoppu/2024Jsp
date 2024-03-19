@@ -23,6 +23,7 @@ public class mainServlet extends HttpServlet {
 		
 		String command= request.getParameter("command");
 		
+		System.out.println("command값>>" + command);
 		ActionFactory af = ActionFactory.getInstance();
 		
 		

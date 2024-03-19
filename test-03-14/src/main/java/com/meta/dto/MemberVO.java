@@ -18,12 +18,11 @@ address varchar(100) NOT NULL);
 @Getter
 @ToString
 
-public class MemberVO {     
+public class MemberVO {   
 	
-	int userNum;
-	int rank;
-	String name;
 	String userid;
+	int admin;
+	String name;
 	String pwd;
 	String email;
 	String phone;

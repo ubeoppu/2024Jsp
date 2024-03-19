@@ -22,10 +22,11 @@ CONSTRAINT FK_RANK FOREIGN KEY (RANK) REFERENCES MEMBER1(RANK)
 
 public class ContentVO {
 int contentNum;
-String contentName;
+String contentTitle;
 String contentStory;
 String genre;
 String actor;
 String year;
-int rank;
+String poster;
+int admin;
 }

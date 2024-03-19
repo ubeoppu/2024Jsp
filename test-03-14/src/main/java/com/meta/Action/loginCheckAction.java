@@ -20,8 +20,9 @@ public class loginCheckAction implements Action {
 		String url = "project/login.jsp";
 		HttpSession session = request.getSession();
 		
-		int result = MemberDAO.getInstance().checkUser(userid, pwd);
+		MemberDAO mDao = MemberDAO.getInstance();
 		
+		int result = mDao.checkUser(userid, pwd);
 		
 		
 		//1: 로그인 성공 0: 비밀번호 불일치 -1: 아이디 불일치

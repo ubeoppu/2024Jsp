@@ -9,25 +9,24 @@
 <script type="text/javascript" src="script/member.js"></script>
 </head>
 <body>
-	<h2>회원 가입</h2>
-	'*' 표시 항목은 필수 입력 항목입니다.
+	<h2>정보 수정</h2>
 	<form action="mainServlet" method="post" name="frm">
 	<input type ="hidden" name =command value ="update_member">
 		<table border="1" width=600>
 			<tr>
 				<td>이름</td>
 				<td><input type="text" name="name" value="${Member.name}" size="40"
-				readonly>*</td>
+				readonly></td>
 			</tr>
 			<tr>
 				<td>아이디</td> <!--READONLY 수정불가 -->
 				<td><input type="text" name="userid"  id="userid" value ="${Member.userid}"
-				size="40" readonly>*
+				size="40" readonly>
 			    </td>
 			</tr>
 			<tr>
 				<td>암 호 확인</td>
-				<td><input type="password" name="pwd" size="20" >*</td>
+				<td><input type="password" name="pwd" size="20" ></td>
 			</tr>
 			<tr>
 				<td>이메일</td>
