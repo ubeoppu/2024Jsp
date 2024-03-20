@@ -18,24 +18,24 @@ public class bulletinWishListFormAction implements Action {
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		
-		int usernum= (int) session.getAttribute("usernum");
+		String userid= (String) session.getAttribute("userid");
 		
 		BulletinWishListDAO bwDao= BulletinWishListDAO.getInstace();
 		
 		List<Integer>list = new ArrayList<Integer>();
 		
-		list = bwDao.getInfoBulletinWishList(usernum);
+		list = bwDao.getBulletinNums(userid);
 		
 		System.out.println("list>>>" + list);
 		
 		List<BulletinVO>voList = new ArrayList<BulletinVO>();
-		voList = bwDao.getBulletinWishList(list, usernum);
+		voList = bwDao.getBulletinWishList(list);
 		
 		System.out.println("voList>>" + voList);
 		
 		request.setAttribute("bulletinWish", voList);
 		
-		request.getRequestDispatcher("")
+		request.getRequestDispatcher("project/bulletinWishListView.jsp")
 		.forward(request, response);
 
 	}

@@ -31,12 +31,18 @@ public class ActionFactory {
 			action = new testAction();
 		}else if(command.equals("insert_content")) {
 			
-		}else if(command.equals("contentWishList_View")) {
-			
 		}else if(command.equals("bulletinWishList_View")) {
 			action = new bulletinWishListFormAction();
 		}else if(command.equals("delete_User")) {
 			action = new deleteMemberAction();
+		}else if(command.equals("contentWishList_View")) {
+			action = new contentWishListFormAction();
+		}else if(command.equals("bulletin_content_View")) {
+			action = new selectBulletinContentViewAction();
+		}else if(command.equals("myBulletin_content_View")) {
+			action = new selectMyBulletinContentViewAction();
+		}else if(command.equals("myBulletin_delete")) {
+			action = new deleteBulletinAction();
 		}
 		
 		return action;

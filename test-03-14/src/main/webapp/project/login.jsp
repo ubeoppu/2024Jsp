@@ -9,7 +9,7 @@
 </head>
 <body>
 	<h2>로그인</h2>
-	<form action="mainServlet" method="post" name="frm">
+	<form action="OttServlet" method="post" name="frm">
 		<input type ="hidden" name = command value="login_Check" />
 		<table>
 			<tr>

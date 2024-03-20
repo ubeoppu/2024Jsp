@@ -10,7 +10,7 @@
 </head>
 <body>
 <div id="wrap" align="center">
-      <h1>나의 게시글 확인</h1>
+      <h1>내가 찜한 게시글</h1>
       <table class="list">
          <tr>
             <th>게시글 번호</th>
@@ -19,13 +19,13 @@
             <th>작성일</th>
             <th>조회수</th>
          </tr>
-         <c:forEach var="bulletin" items="${bulletin}">
+         <c:forEach var="bulletinWish" items="${bulletinWish}">
             <tr class="record">
-               <td><a href="OttServlet?command=myBulletin_content_View&bulletinNum=${bulletin.bulletinNum}">${bulletin.bulletinNum}</a></td>
-               <td><a href="OttServlet?command=myBulletin_content_View&bulletinNum=${bulletin.bulletinNum}"> ${bulletin.bulletinTitle}</a></td>
-               <td>${bulletin.name}</td>
-               <td>${bulletin.bulletinDate}</td>
-               <td>${bulletin.readcount}</td>
+               <td><a href="OttServlet?command=bulletin_content_View&bulletinNum=${bulletinWish.bulletinNum}">${bulletinWish.bulletinNum}</a></td>
+               <td><a href="OttServlet?command=bulletin_content_View&bulletinNum=${bulletinWish.bulletinNum}"> ${bulletinWish.bulletinTitle}</a></td>
+               <td>${bulletinWish.name}</td>
+               <td>${bulletinWish.bulletinDate}</td>
+               <td>${bulletinWish.readcount}</td>
             </tr>
          </c:forEach>
       </table>

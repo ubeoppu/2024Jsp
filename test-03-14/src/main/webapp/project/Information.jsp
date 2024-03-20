@@ -10,7 +10,7 @@
 </head>
 <body>
 	<h2>정보 수정</h2>
-	<form action="mainServlet" method="post" name="frm">
+	<form action="OttServlet" method="post" name="frm">
 	<input type ="hidden" name =command value ="update_member">
 		<table border="1" width=600>
 			<tr>

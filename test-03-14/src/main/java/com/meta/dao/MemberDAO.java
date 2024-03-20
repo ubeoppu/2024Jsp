@@ -222,7 +222,7 @@ public class MemberDAO {
 		      Connection con = null;
 		      PreparedStatement pstmt = null;
 
-		      String sql = "delete from member where userNum = ?";
+		      String sql = "delete from member where userID = ?";
 
 		      try {
 		         con = DBManager.getConnection();

@@ -20,12 +20,12 @@ public class BulletinListViewFormAction implements Action {
 		
 		HttpSession session = request.getSession();
 		
-		int usernum = (int) session.getAttribute("usernum");
+		String userid = (String)session.getAttribute("userid");
 	
-		System.out.println("userid!!>>" + usernum);
+		System.out.println("userid!!>>" + userid);
 		List<BulletinVO>list = new ArrayList<BulletinVO>();
 		
-		list = BulletinDAO.getInstance().selectUserAllBulletin(usernum);
+		list = BulletinDAO.getInstance().selectUserAllBulletin(userid);
 		
 		request.setAttribute("bulletin", list);
 		

@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.meta.dto.BulletinVO;
+import com.meta.dto.ContentVO;
 import com.meta.util.DBManager;
 
 public class ContentWishListDAO {
@@ -26,7 +27,7 @@ public class ContentWishListDAO {
  		Connection con = null;
  		PreparedStatement pstmt = null;
  		ResultSet rs = null;
-		String sql = "select bulletinNum from bulletinWishList where Userid = ?";
+		String sql = "select contentNum from contentWishList where userid = ?";
  		
  		try {
  			con = DBManager.getConnection();
@@ -39,8 +40,9 @@ public class ContentWishListDAO {
  			
  			System.out.println("rs>>!" + rs);
  			while(rs.next()) {
- 				list.add(rs.getInt("bulletinNum"));
+ 				list.add(rs.getInt("ContentNum"));
  			}
+ 			System.out.println("dao List값 >>" + list);
  		}catch(Exception e) {
  			e.printStackTrace();
  		}finally {
@@ -50,13 +52,13 @@ public class ContentWishListDAO {
  		return list;
  	}
  	
- 	public List<BulletinVO> getBulletinWishList(List<Integer> list, String userid){
- 		List<BulletinVO>Volist = new ArrayList<BulletinVO>();
+ 	public List<ContentVO> getContentWishList(List<Integer> list){
+ 		List<ContentVO>Volist = new ArrayList<ContentVO>();
  		
  		Connection con = null;
  		PreparedStatement pstmt = null;
  		ResultSet rs = null;
- 		String sql = "select * from bulletin where bulletinNum = ? and userNum =?";
+ 		String sql = "select * from content where contentNum = ?";
  		
  		try {
  			con = DBManager.getConnection();
@@ -66,19 +68,19 @@ public class ContentWishListDAO {
  			for(int i = 0; i < list.size(); i++) {
  				
  				pstmt.setInt(1, list.get(i));
- 				pstmt.setString(2, userid);
  				
  				rs = pstmt.executeQuery();
  				
  	 			if(rs.next()) {
- 	 				BulletinVO vo = new BulletinVO();
+ 	 				ContentVO vo = new ContentVO();
  	 				
- 	 				vo.setBulletinNum(rs.getInt("bulletinNum"));
- 	 				vo.setBulletinTitle(rs.getString("bulletinTitle"));
- 	 				vo.setBulletinDate(rs.getDate("bulletinDate"));
- 	 				vo.setBulletinContent(rs.getString("bulletinContent"));
- 	 				vo.setReadcount(rs.getInt("readcount"));
- 	 				vo.setName(rs.getString("name"));
+ 	 				vo.setContentNum(rs.getInt("contentNum"));
+ 	 				vo.setContentName(rs.getString("contentName"));
+ 	 				vo.setGenre(rs.getString("genre"));
+ 	 				vo.setActor(rs.getString("actor"));
+ 	 				vo.setYear(rs.getInt("year"));
+ 	 				vo.setStory(rs.getString("story"));
+ 	 				vo.setPoster(rs.getString("poster"));
  	 				
  	 				Volist.add(vo);
  	 				

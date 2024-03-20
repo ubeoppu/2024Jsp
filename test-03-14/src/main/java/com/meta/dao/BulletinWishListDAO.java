@@ -20,21 +20,21 @@ public class BulletinWishListDAO {
  		return instance;
  	}
  	
- 	public List<Integer> getInfoBulletinWishList(int userid){
+ 	public List<Integer> getBulletinNums(String userid){
  		System.out.println(userid);
  		List<Integer>list = new ArrayList<Integer>();
  		
  		Connection con = null;
  		PreparedStatement pstmt = null;
  		ResultSet rs = null;
- 		String sql = "select bulletinNum from bulletinBoardWishList where bulletinUserNum = ?";
+ 		String sql = "select bulletinNum from bulletinWishList where userid = ?";
  		
  		try {
  			con = DBManager.getConnection();
  			
  			pstmt = con.prepareStatement(sql);
  			
- 			pstmt.setInt(1, userid);
+ 			pstmt.setString(1, userid);
  			
  			rs = pstmt.executeQuery();
  			
@@ -51,13 +51,13 @@ public class BulletinWishListDAO {
  		return list;
  	}
  	
- 	public List<BulletinVO> getBulletinWishList(List<Integer> list, int usernum){
+ 	public List<BulletinVO> getBulletinWishList(List<Integer> list){
  		List<BulletinVO>Volist = new ArrayList<BulletinVO>();
  		
  		Connection con = null;
  		PreparedStatement pstmt = null;
  		ResultSet rs = null;
- 		String sql = "select * from bulletin where bulletinNum = ? and userNum =?";
+ 		String sql = "select * from bulletin where bulletinNum = ?";
  		
  		try {
  			con = DBManager.getConnection();
@@ -67,7 +67,6 @@ public class BulletinWishListDAO {
  			for(int i = 0; i < list.size(); i++) {
  				
  				pstmt.setInt(1, list.get(i));
- 				pstmt.setInt(2, usernum);
  				
  				rs = pstmt.executeQuery();
  				

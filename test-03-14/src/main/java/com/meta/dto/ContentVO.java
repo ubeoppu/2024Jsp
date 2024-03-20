@@ -5,16 +5,16 @@ import lombok.Setter;
 import lombok.ToString;
 
 /*
- * create table Content(
-contentNum number(10) NOT NULL PRIMARY KEY,
-contentName varchar(30) NOT NULL,
-contentStory varchar(1000),
-genre varchar2(30) NOT NULL,
-actor varchar2(15) NOT NULL,
-year varchar(30) NOT NULL,
-RANK NUMBER(1) NOT NULL,
-CONSTRAINT FK_RANK FOREIGN KEY (RANK) REFERENCES MEMBER1(RANK)
+create table content(
+contentNum number(5) not null primary key,
+contentName varchar2(50) not null,
+genre varchar2(30) not null,
+actor varchar2(100) not null,
+year number(4) not null,
+story varchar2(1000) not null,
+poster varchar2(30) not null
 );
+
  */
 @Setter
 @Getter
@@ -22,11 +22,10 @@ CONSTRAINT FK_RANK FOREIGN KEY (RANK) REFERENCES MEMBER1(RANK)
 
 public class ContentVO {
 int contentNum;
-String contentTitle;
-String contentStory;
+String contentName;
 String genre;
 String actor;
-String year;
+int year;
+String story;
 String poster;
-int admin;
 }
