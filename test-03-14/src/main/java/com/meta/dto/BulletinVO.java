@@ -20,7 +20,7 @@ constraint FK_USERNUM foreign key (userNum) references member1(usernum)
 @ToString
 public class BulletinVO {
 int bulletinNum;
-int userid;
+String userid;
 String bulletinTitle;
 Date bulletinDate;
 String bulletinContent;

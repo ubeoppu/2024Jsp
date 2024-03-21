@@ -41,8 +41,18 @@ public class ActionFactory {
 			action = new selectBulletinContentViewAction();
 		}else if(command.equals("myBulletin_content_View")) {
 			action = new selectMyBulletinContentViewAction();
-		}else if(command.equals("myBulletin_delete")) {
+		}else if(command.equals("Bulletin_delete")) {
 			action = new deleteBulletinAction();
+		}else if(command.equals("comment_Insert")) {
+			action = new commentInsertAction();
+		}else if(command.equals("comment_Update")) {
+			action = new commentUpdateAction();
+		}else if(command.equals("comment_Delete")) {
+			action = new commentDeleteAction();
+		}else if(command.equals("Bulletin_Update_Form")) {
+			action = new bulletinUpdateFormAction();
+		}else if(command.equals("bulletin_update")) {
+			action = new bulletinUpdateAction();
 		}
 		
 		return action;

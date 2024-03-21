@@ -29,6 +29,8 @@ public class BulletinListViewFormAction implements Action {
 		
 		request.setAttribute("bulletin", list);
 		
+		
+		
 		request.getRequestDispatcher("project/bulletinMyList.jsp").forward(request, response);
 	}
 

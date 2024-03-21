@@ -26,11 +26,7 @@
                <td>${contentWish.story}</td>
                <td><img src="${contentWish.poster}" width ="400" height="500"></td>
                <td>
-       
-
-
             </tr>
-            
          </c:forEach>
          
       </table>

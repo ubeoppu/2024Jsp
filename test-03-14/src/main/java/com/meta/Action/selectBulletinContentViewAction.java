@@ -9,7 +9,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.meta.dao.BulletinDAO;
+import com.meta.dao.CommentDAO;
 import com.meta.dto.BulletinVO;
+import com.meta.dto.CommentVO;
 
 public class selectBulletinContentViewAction implements Action {
 
@@ -24,7 +26,20 @@ public class selectBulletinContentViewAction implements Action {
 		
 		vo =BulletinDAO.getInstance().selectOneBulletin(num);
 		
+		request.setAttribute("bulletinNum", vo.getBulletinNum());
+		
 	    request.setAttribute("bulletin", vo);
+	    
+	    System.out.println("jsp테스트 화면 테스트입니다.");
+		CommentDAO cDao = CommentDAO.getInstance();
+	   List<CommentVO>list = new ArrayList<CommentVO>();
+	   int bulletinNum = (int) request.getAttribute("bulletinNum");
+	   System.out.println("게시글번호출력테스트>>" + bulletinNum);
+	   list = cDao.getComments(bulletinNum);
+	   System.out.println("게시글번호출력테스트>>" + bulletinNum);
+	   
+	   request.setAttribute("comment", list);
+	   System.out.println("jsp리스트 값>>" + list);
 		
 	    request.getRequestDispatcher("project/selectBulletinView.jsp").forward(request, response);
 		

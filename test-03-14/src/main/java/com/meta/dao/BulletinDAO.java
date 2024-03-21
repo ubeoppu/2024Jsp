@@ -27,7 +27,7 @@ public class BulletinDAO {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql = "select * from Bulletin where userid = ?";
+		String sql = "select * from Bulletin where userid = ? order by bulletinNum";
 
 		try {
 			con = DBManager.getConnection();
@@ -49,6 +49,7 @@ public class BulletinDAO {
 				vo.setBulletinContent(rs.getString("bulletinContent"));
 				vo.setReadcount(rs.getInt("readcount"));
 				vo.setName(rs.getString("name"));
+				vo.setUserid(rs.getString("userid"));
 
 				list.add(vo);
 			}
@@ -85,6 +86,7 @@ public class BulletinDAO {
 				vo.setName(rs.getString("name"));
 				vo.setBulletinDate(rs.getDate("bulletinDate"));
 				vo.setBulletinContent(rs.getString("bulletinContent"));
+				vo.setUserid(rs.getString("userid"));
 
 			}
 
@@ -96,6 +98,32 @@ public class BulletinDAO {
 
 		return vo;
 	}
+	public void updateBulletin(BulletinVO vo) {
+	      
+	      Connection con = null;
+	      PreparedStatement pstmt = null;
+	      
+	      String sql = "update bulletin set name=?, bulletinTitle=?, bulletinContent=? where bulletinNum = ?";
+	      
+	      try {
+	         con = DBManager.getConnection();
+	         
+	         pstmt = con.prepareStatement(sql); //sql문 전송, 맵핑
+	         
+	         pstmt.setString(1, vo.getName());
+	         pstmt.setString(2, vo.getBulletinTitle());
+	         pstmt.setString(3, vo.getBulletinContent());
+	         pstmt.setInt(4, vo.getBulletinNum());
+	         
+	         pstmt.executeUpdate();//sql문 실행
+	         
+	      }catch(Exception e) {
+	         e.printStackTrace();
+	      }finally {
+	    	  DBManager.close(con, pstmt);
+	      }
+	   }
+
 	
 	public int deleteBulletin(int num) {
 		int result = -1;
