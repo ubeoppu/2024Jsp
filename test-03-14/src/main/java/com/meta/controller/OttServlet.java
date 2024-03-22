@@ -27,7 +27,7 @@ public class OttServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		
 		String command= request.getParameter("command");
-		
+		System.out.println("Ott서블릿 작동됨");
 		System.out.println("command값>>" + command);
 		ActionFactory af = ActionFactory.getInstance();
 //        ServletContext context = request.getSession().getServletContext();
@@ -42,6 +42,7 @@ public class OttServlet extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println("asdasd");
 	     String contentType = request.getContentType();
 	      
 	      if(contentType != null && contentType.startsWith("multipart/form-data")) {

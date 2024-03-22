@@ -20,7 +20,6 @@ height:50px;
 
 }
 </style>
-<script type ="text/javascript" src="script/board.js"></script>
 <meta charset="UTF-8">
 <link rel="stylesheet" type="text/css" href="css/shopping.css">
 <title>Insert title here</title>
@@ -55,8 +54,8 @@ height:50px;
 		<br> <br> <input type="button" value="게시글 수정" onclick="location.href='OttServlet?command=Bulletin_Update_Form&bulletinNum=${bulletin.bulletinNum}'">
 		<input type="button" value="게시글 삭제" onclick="location.href='OttServlet?command=Bulletin_delete&bulletinNum=${bulletin.bulletinNum}'">
 		</c:if>
-		<input type="button" value="게시글 리스트"onclick="location.href='OttServlet?command=BulletinList_View'"> 
-		
+		<input type="button" value="나의 게시글 리스트" onclick="location.href='OttServlet?command=BulletinList_View'"> 
+		<input type="button" value="나의 찜목록 게시글 리스트" onclick="location.href='OttServlet?command=bulletinWishList_View'">
 	</div>
 		
 		<form action ="OttServlet" method="post">
@@ -68,21 +67,33 @@ height:50px;
 		<table>
 		<c:forEach var="comment" items="${comment}">
 		<tr>
-		<td>${comment.commentNum }</td>
-		<td>작성자 명 :${comment.userid }
-		<c:if test="${userid eq comment.userid}">
-		<input type="button" value="삭제" onclick="location.href='OttServlet?command=comment_Delete&commentNum=${comment.commentNum }&bulletinNum=${bulletinNum} '">
-		<input type="button" value="수정" onclick="location.href='OttServlet?command=comment_Update&commentNum=${comment.commentNum}?bulletinNum=${bulletinNum }'">
-		</c:if>
-		</td>
+		<td>작성자 명 :${comment.userid} 작성 날짜: ${comment.commentDate }</td>
+
 		</tr> 
 		<tr>
-		<td>${comment.commentContent }</td>
-		<td></td>
+		<td>${comment.commentContent } &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<c:if test="${userid eq comment.userid}">
+		<input type="button" value="삭제" onclick="return checkComment(${comment.commentNum},${bulletinNum })">
+		<input type="button" value="수정" onclick="open_wid('OttServlet?command=comment_Update_Form&commentNum=${comment.commentNum}', 'update')">
+		</c:if>
+		</td>
 		</tr>
 		</c:forEach>
 		</table>
-												
+<script>
+function open_wid(url, name){
+	window.open(url, name, "width=500, height=230");
+};
+
+function checkComment(commentNum, bulletinNum){
+if(confirm("삭제하시겠습니까?")){
+	location.href="OttServlet?command=comment_Delete&commentNum="+ commentNum + "&bulletinNum=" + bulletinNum	
+}
+}
+</script>
+
+		
+									
 										
 </body>
 </html>

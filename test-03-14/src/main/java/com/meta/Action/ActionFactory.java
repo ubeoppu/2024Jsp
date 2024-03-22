@@ -45,14 +45,16 @@ public class ActionFactory {
 			action = new deleteBulletinAction();
 		}else if(command.equals("comment_Insert")) {
 			action = new commentInsertAction();
-		}else if(command.equals("comment_Update")) {
-			action = new commentUpdateAction();
+		}else if(command.equals("comment_Update_Form")) {
+			action = new commentUpdateFormAction();
 		}else if(command.equals("comment_Delete")) {
 			action = new commentDeleteAction();
 		}else if(command.equals("Bulletin_Update_Form")) {
 			action = new bulletinUpdateFormAction();
 		}else if(command.equals("bulletin_update")) {
 			action = new bulletinUpdateAction();
+		}else if(command.equals("comment_Update")) {
+			action = new commentUpdateAction();
 		}
 		
 		return action;

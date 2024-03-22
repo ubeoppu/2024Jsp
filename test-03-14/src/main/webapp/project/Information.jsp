@@ -42,7 +42,7 @@
 		   </tr>
 			<tr>
 				<td colspan="2" align="center">
-				<input type="submit" value="수정">
+				<input type="submit" value="수정" onclick ="return pwdCheck()">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input type="reset" value="취소">
 				</td>
 			</tr>
@@ -51,5 +51,25 @@
 			</tr>
 		</table>
 	</form>
+	<script>
+	function pwdCheck(){
+		if(document.frm.pwd.value != ${Member.pwd}){
+			alert("비밀번호가 일치하지 않습니다");
+			return false;
+		}
+		if(document.frm.email.value == ""){
+			alert("이메일을 작성해주세요.")
+			return false;
+		}
+		if(document.frm.phone.value == ""){
+			alert("전화번호를 입력해주세요.")
+			return false;
+		}
+		if(document.frm.address.value == ""){
+			alert("주소를 입력해주세요.")
+			return false;
+		}
+	}
+	</script>
 </body>
 </html>

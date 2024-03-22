@@ -150,5 +150,27 @@ public class BulletinDAO {
 
 		return result;
 	}
+	
+	public void updateReadCount(int BulletinNum) {
+	      
+	      Connection con = null;
+	      PreparedStatement pstmt = null;
+
+	      String sql = "update bulletin set readcount = readcount+1 where bulletinNum=?";
+	      
+	      try {
+	         con = DBManager.getConnection();
+	         pstmt = con.prepareStatement(sql);
+	         pstmt.setInt(1, BulletinNum);
+	         
+	         pstmt.executeUpdate();
+	         
+	      }catch(Exception e) {
+	         e.printStackTrace();
+	      }finally {
+	         DBManager.close(con, pstmt);
+	      }
+	      
+	   }
 
 }

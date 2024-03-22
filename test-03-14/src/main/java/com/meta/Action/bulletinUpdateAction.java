@@ -28,7 +28,7 @@ public class bulletinUpdateAction implements Action {
 			
 			BulletinDAO.getInstance().updateBulletin(bVo);
 			
-			response.sendRedirect("OttServlet?command=bulletin_list");
+			response.sendRedirect("OttServlet?command=BulletinList_View");
 		}
 
 	}

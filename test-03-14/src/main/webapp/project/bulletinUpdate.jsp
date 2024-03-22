@@ -16,8 +16,7 @@
          <table>
             <tr>
                <th>작성자</th>
-               <td><input type="text" size="12" name="name"
-                  value="${bulletin.name}"> * 필수</td>
+               <td><input type="text" size="12" name="name" readonly value="${bulletin.name}"> </td>
             </tr>
             <tr>
                <th>아이디</th>

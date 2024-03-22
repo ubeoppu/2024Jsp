@@ -19,7 +19,7 @@ public class CommentDAO {
 		return instance;
 	}
 	
-	public List<CommentVO> getComments(int bulletinNum){
+	public List<CommentVO> getAllComments(int bulletinNum){
 		List<CommentVO>list = new ArrayList<CommentVO>();
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -56,6 +56,44 @@ public class CommentDAO {
 		return list;
 	}
 	
+	public CommentVO getOneComments(int commentNum){
+		CommentVO vo = new CommentVO();
+		
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		String sql = "select * from comments where commentNum = ?";
+		try {
+			con = DBManager.getConnection();
+			
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setInt(1, commentNum);
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				
+				
+				vo.setCommentNum(rs.getInt("commentNum"));
+				vo.setCommentContent(rs.getString("commentContent"));
+				vo.setCommentDate(rs.getDate("commentDate"));
+				vo.setUserid(rs.getString("userid"));
+				
+			}
+			
+			System.out.println("테뀨vo>>" + vo);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			DBManager.close(con, pstmt, rs);
+		}
+		
+		
+		return vo;
+	}
+	
 	public void insertComment(int bulletinNum, String commentContent,  String userid) {
 	      
 	      Connection con = null;
@@ -80,28 +118,31 @@ public class CommentDAO {
 	      }
 	   }
 	
-	public void updateComment(CommentVO cVo) {
-	      
-	      Connection con = null;
-	      PreparedStatement pstmt = null;
-	      
-	      String sql = "udpate comments set commentContent=? where commentNum=?";
-	      
-	      try {
-	         con = DBManager.getConnection();
-	         pstmt = con.prepareStatement(sql);
-	         
-//	         pstmt.setString(1, cVo.getConmmentContent());
-	         pstmt.setInt(2, cVo.getCommentNum());
-	         
-	         pstmt.executeUpdate();
-	         
-	      }catch(Exception e) {
-	         e.printStackTrace();
-	      }finally {
-	         DBManager.close(con, pstmt);
-	      }
-	   }
+//	public int updateComment(CommentVO cVo) {
+//	      
+//	      Connection con = null;
+//	      PreparedStatement pstmt = null;
+//	      
+//	      int result = -1;
+//	      
+//	      String sql = "udpate comments set commentContent=? where commentNum=?";
+//	      
+//	      try {
+//	         con = DBManager.getConnection();
+//	         pstmt = con.prepareStatement(sql);
+//	         
+////	         pstmt.setString(1, cVo.getConmmentContent());
+//	         pstmt.setInt(2, cVo.getCommentNum());
+//	         
+//	         result = pstmt.executeUpdate();
+//	         
+//	      }catch(Exception e) {
+//	         e.printStackTrace();
+//	      }finally {
+//	         DBManager.close(con, pstmt);
+//	      }
+//	      return result;
+//	   }
 	
 	public void deleteComment(int commentNum) {
 	      
@@ -125,6 +166,35 @@ public class CommentDAO {
 	         DBManager.close(con, pstmt);
 	      }
 	   }
+	
+	public int updateComment(int commentNum, String commentContent) {
+		
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		
+		int result = -1;
+		
+		String sql ="update comments set commentContent = ? where commentNum = ?";
+		
+		try {
+			
+			con = DBManager.getConnection();
+			
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setString(1, commentContent);
+			pstmt.setInt(2, commentNum);
+			
+			result = pstmt.executeUpdate();
+			
+			System.out.println("result체크>>" + result);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			DBManager.close(con, pstmt);
+		}
+		return result;
+	}
 	
 	
 }

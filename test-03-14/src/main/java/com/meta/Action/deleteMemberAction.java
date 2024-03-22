@@ -16,9 +16,10 @@ public class deleteMemberAction implements Action {
 			throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		
-		int usernum = (int)session.getAttribute("usernum");
-		
-		MemberDAO.getInstance().deleteMember(usernum);
+		String userid = (String)session.getAttribute("userid");
+		System.out.println("테스트");
+		System.out.println("테스트아이디>>" + userid);
+		MemberDAO.getInstance().deleteMember(userid);
 		
 		request.getRequestDispatcher("project/login.jsp").forward(request, response);
 

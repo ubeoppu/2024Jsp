@@ -217,7 +217,7 @@ public class MemberDAO {
 		return result;
 	}
 	
-	   public void deleteMember(int userid) {
+	   public void deleteMember(String userid) {
 
 		      Connection con = null;
 		      PreparedStatement pstmt = null;
@@ -229,7 +229,7 @@ public class MemberDAO {
 		         
 		         pstmt = con.prepareStatement(sql);
 		         
-		         pstmt.setInt(1, userid);
+		         pstmt.setString(1, userid);
 		         
 		         pstmt.executeUpdate();
 

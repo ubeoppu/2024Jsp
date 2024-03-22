@@ -22,9 +22,14 @@ public class selectBulletinContentViewAction implements Action {
 		BulletinVO vo = new BulletinVO();
 		
 		
-		int num =Integer.parseInt(request.getParameter("bulletinNum"));
+//		int bulletinNum = (int) request.getAttribute("bulletinNum");
+		int bulletinNum =Integer.parseInt(request.getParameter("bulletinNum"));
 		
-		vo =BulletinDAO.getInstance().selectOneBulletin(num);
+		BulletinDAO bDao = BulletinDAO.getInstance();
+		
+		vo = bDao.selectOneBulletin(bulletinNum);
+		
+		bDao.updateReadCount(bulletinNum);
 		
 		request.setAttribute("bulletinNum", vo.getBulletinNum());
 		
@@ -33,9 +38,9 @@ public class selectBulletinContentViewAction implements Action {
 	    System.out.println("jsp테스트 화면 테스트입니다.");
 		CommentDAO cDao = CommentDAO.getInstance();
 	   List<CommentVO>list = new ArrayList<CommentVO>();
-	   int bulletinNum = (int) request.getAttribute("bulletinNum");
+	   
 	   System.out.println("게시글번호출력테스트>>" + bulletinNum);
-	   list = cDao.getComments(bulletinNum);
+	   list = cDao.getAllComments(bulletinNum);
 	   System.out.println("게시글번호출력테스트>>" + bulletinNum);
 	   
 	   request.setAttribute("comment", list);

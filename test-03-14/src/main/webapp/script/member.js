@@ -1,5 +1,10 @@
 
 
+function open_wid(url, name){
+	window.open(url, name, "width=500, height=230");
+};
+
+
 function loginCheck() {
 	//                name의 값의 길이가 0이면 실행
 	console.log("loginCheck");
@@ -78,3 +83,9 @@ function joinCheck(){
 	}
 	return true;
 }
+
+function cmUpdateOpen(){
+	window.name ="upForm";
+	window.open("")
+}
+
