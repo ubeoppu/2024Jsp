@@ -172,5 +172,49 @@ public class BulletinDAO {
 	      }
 	      
 	   }
+	
+	public ArrayList<BulletinVO> getSearch(String searchField, String searchText){//특정한 리스트를 받아서 반환
+	      ArrayList<BulletinVO> list = new ArrayList<BulletinVO>();
+	      
+	      Connection con = null;
+	      PreparedStatement pstmt = null;
+	      ResultSet rs = null;
+	      
+	      String sql = "select * from bulletin where " + searchField +"= ?";
+	      
+	      System.out.println("sql>>" + sql);
+	     // String SQL ="select * from bbs WHERE "+searchField.trim();
+	      try {
+	            if(searchText != null && !searchText.equals("") ){
+	                //SQL +=" LIKE '%"+searchText.trim()+"%' order by bbsID desc limit 10";
+	            	
+	            	con = DBManager.getConnection();
+	            	
+	            	pstmt = con.prepareStatement(sql);
+	            	
+	            	pstmt.setString(1, searchText);
+	            	
+	            	rs = pstmt.executeQuery();
+	            
+	     
+	         while(rs.next()) {
+	        	 BulletinVO vo = new BulletinVO();
+	        	 
+	        	 vo.setBulletinTitle(rs.getString("bulletinTitle"));
+	        	 vo.setBulletinContent(rs.getString("bulletinContent"));
+	        	 vo.setBulletinDate(rs.getDate("bulletinDate"));
+	        	 vo.setName(rs.getString("name"));
+	        	 vo.setReadcount(rs.getInt("readCount"));
+	        	 vo.setUserid(rs.getString("userid"));
+	        	 vo.setBulletinNum(rs.getInt("bulletinNum"));
+	        	 
+	        	 list.add(vo);
+	         }  
+	            }
+	      } catch(Exception e) {
+	         e.printStackTrace();
+	      }
+	      return list;
+	   }
 
 }

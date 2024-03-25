@@ -15,6 +15,7 @@
 <a href ="OttServlet?command=contentWishList_View">내가 찜한 작품</a><br>
 <a href ="OttServlet?command=bulletinWishList_View">내가 찜한 게시글</a><br>
 <a href ="OttServlet?command=delete_User">회원 탈퇴</a><br><br>
+<a href ="OttServlet?command=logout_User">로그아웃</a>
 ${message}
 </form>
 </body>

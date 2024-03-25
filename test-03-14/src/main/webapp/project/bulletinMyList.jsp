@@ -9,6 +9,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+
 <div id="wrap" align="center">
       <h1>나의 게시글 확인</h1>
       <table class="list">

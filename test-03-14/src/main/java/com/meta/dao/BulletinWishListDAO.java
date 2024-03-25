@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.meta.dto.BulletinVO;
-import com.meta.dto.BulletinWishListVO;
 import com.meta.util.DBManager;
 
 public class BulletinWishListDAO {

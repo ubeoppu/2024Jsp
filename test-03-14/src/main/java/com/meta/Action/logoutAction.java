@@ -5,12 +5,17 @@ import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-public class testAction implements Action {
+public class logoutAction implements Action {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("project/test.jsp").forward(request, response);
+		HttpSession session = request.getSession();
+		
+		session.invalidate();
+		
+		request.getRequestDispatcher("project/login.jsp").forward(request, response);
 
 	}
 

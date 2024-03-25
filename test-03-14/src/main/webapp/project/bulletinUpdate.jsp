@@ -35,8 +35,7 @@
          <br>
          <br> <input type="submit" value="등록">
               <input type="reset" value="다시 작성">
-              <input type="button" value="목록"
-                     onclick="location.href='OttServlet?command=bulletin_list'">
+              <input type="button" value="목록" onclick="location.href='OttServlet?command=bulletin_list'">
       </form>
    </div>
 </body>
